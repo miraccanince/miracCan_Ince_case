@@ -1,0 +1,66 @@
+# Test Scenarios for Petstore API
+
+## Overview
+This document outlines the test scenarios for the Petstore API endpoints. Each test case verifies the expected behavior of the API and ensures compliance with the specified functionality.
+
+### 1. Create a Pet
+**Description**: Verifies the ability to create a new pet using the Petstore API.
+
+- **Endpoint**: `POST /pet`
+- **Request Payload**:
+  ```json
+  {
+    "id": 123456,
+    "category": { "id": 1, "name": "Dog" },
+    "name": "Buddy",
+    "photoUrls": ["http://example.com/dog.jpg"],
+    "tags": [{ "id": 1, "name": "friendly" }],
+    "status": "available"
+  }
+Expected Result: Status code 200 and a response body containing the created pet details.
+
+2. Get Pet by ID
+Description: Verifies the ability to retrieve details of a pet using its ID.
+
+Endpoint: GET /pet/{petId}
+Input: petId = 123456
+Expected Result: Status code 200 and a response body containing the pet details.
+
+3. Get Pet with Invalid ID (Negative Test)
+Description: Ensures that an invalid pet ID returns the appropriate error.
+
+Endpoint: GET /pet/{petId}
+Input: petId = "m"
+Expected Result: Status code 404 and an error message indicating the pet was not found.
+
+4. Update a Pet
+Description: Verifies the ability to update an existing pet's details.
+
+Endpoint: PUT /pet
+Request Payload:
+{
+  "id": 123456,
+  "category": { "id": 1, "name": "Dog" },
+  "name": "Max",
+  "photoUrls": ["http://example.com/dog.jpg"],
+  "tags": [{ "id": 1, "name": "friendly" }],
+  "status": "available"
+}
+Expected Result: Status code 200 and a response body containing the updated pet details.
+
+5. Delete a Pet
+Description: Verifies the ability to delete a pet using its ID.
+
+Endpoint: DELETE /pet/{petId}
+Input: petId = 123456
+Expected Result: Status code 200 and confirmation of deletion.
+
+6. Find Pets by Status
+Description: Verifies the ability to search for pets by their status.
+
+Endpoint: GET /pet/findByStatus
+Inputs:
+status = "available"
+status = "pending"
+status = "sold"
+Expected Result: Status code 200 and a response body containing a list of pets matching the given status.
